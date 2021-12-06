@@ -132,3 +132,11 @@ You should see an IP address owned by your VPN provider.
 ```bash
 docker run --rm -it --network=container:openvpn-client alpine wget -qO - ifconfig.me
 ```
+
+### Using with username/password
+
+1. Create file with same name of config file, ending with `.pass`
+Eg: `config.ovpn` => pass file is `config.ovpn.pass`
+This file contain 2 line, first is username, second is password.
+
+2. Set environment `OPENVPN_AUTH=on`

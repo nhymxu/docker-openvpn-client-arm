@@ -192,7 +192,9 @@ if [ "$SOCKS_PROXY" = "on" ]; then
 fi
 
 ovpn_auth_flag=''
-if [ -n "$OPENVPN_AUTH_SECRET" ]; then 
+if [ "$OPENVPN_AUTH" = "on" ]; then
+    ovpn_auth_flag="--auth-user-pass $config_file_original.pass"
+elif [ -n "$OPENVPN_AUTH_SECRET" ]; then 
     if [ -f "/run/secrets/$OPENVPN_AUTH_SECRET" ]; then
         echo "Configuring OpenVPN authentication."
         ovpn_auth_flag="--auth-user-pass /run/secrets/$OPENVPN_AUTH_SECRET"
